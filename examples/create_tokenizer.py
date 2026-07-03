@@ -24,6 +24,10 @@ def reuse(args) -> None:
     tok = AutoTokenizer.from_pretrained(args.source)
     if tok.pad_token is None:
         tok.pad_token = tok.eos_token
+
+    #  Prevent token_type_ids from being generated
+    tok.model_input_names = ["input_ids", "attention_mask"]
+
     tok.save_pretrained(args.out)
     print(f"[done] Saved reused tokenizer (vocab {len(tok)}) to {args.out}")
 
@@ -55,6 +59,9 @@ def train(args) -> None:
         eos_token="</s>",
         pad_token="<pad>",
     )
+    #  Ensure no token_type_ids
+    fast.model_input_names = ["input_ids", "attention_mask"]
+
     fast.save_pretrained(args.out)
     print(f"[done] Trained + saved BPE tokenizer (vocab {args.vocab_size}) to {args.out}")
 

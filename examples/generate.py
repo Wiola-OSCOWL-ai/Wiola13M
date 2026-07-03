@@ -11,7 +11,7 @@ import argparse
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-import wiola13m  # noqa: F401  (registers the "wiola" architecture with Auto* classes)
+import wiola13m13m  # noqa: F401  (registers the "wiola" architecture with Auto* classes)
 
 
 def main() -> None:

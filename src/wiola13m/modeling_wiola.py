@@ -40,6 +40,7 @@ from torch import nn
 from torch.nn import CrossEntropyLoss
 
 from transformers.cache_utils import Cache, DynamicCache
+from transformers.generation import GenerationMixin
 from transformers.modeling_outputs import (
     BaseModelOutputWithPast,
     CausalLMOutputWithPast,
@@ -465,6 +466,7 @@ class WiolaModel(WiolaPreTrainedModel):
         self,
         input_ids: Optional[torch.LongTensor] = None,
         attention_mask: Optional[torch.Tensor] = None,
+        token_type_ids: Optional[torch.Tensor] = None,    # ← accepted and ignored
         position_ids: Optional[torch.LongTensor] = None,
         past_key_values: Optional[Cache] = None,
         inputs_embeds: Optional[torch.FloatTensor] = None,
@@ -573,7 +575,7 @@ class WiolaModel(WiolaPreTrainedModel):
 # =============================================================================
 # Causal LM head
 # =============================================================================
-class WiolaForCausalLM(WiolaPreTrainedModel):
+class WiolaForCausalLM(WiolaPreTrainedModel, GenerationMixin):
     _tied_weights_keys = ["lm_head.weight"]
 
     def __init__(self, config: WiolaConfig):
@@ -582,6 +584,7 @@ class WiolaForCausalLM(WiolaPreTrainedModel):
         self.vocab_size = config.vocab_size
         self.lm_head = nn.Linear(config.hidden_size, config.vocab_size, bias=False)
         self.post_init()
+        self.tie_weights()                  # explicitly tie weights after init
 
     # -- embedding / head plumbing -------------------------------------------
     def get_input_embeddings(self):
@@ -606,6 +609,7 @@ class WiolaForCausalLM(WiolaPreTrainedModel):
         self,
         input_ids: Optional[torch.LongTensor] = None,
         attention_mask: Optional[torch.Tensor] = None,
+        token_type_ids: Optional[torch.Tensor] = None,    # ← accepted and ignored
         position_ids: Optional[torch.LongTensor] = None,
         past_key_values: Optional[Cache] = None,
         inputs_embeds: Optional[torch.FloatTensor] = None,
@@ -678,6 +682,9 @@ class WiolaForCausalLM(WiolaPreTrainedModel):
         cache_position=None,
         **kwargs,
     ):
+        # Remove any token_type_ids that might be passed by the tokenizer
+        kwargs.pop("token_type_ids", None)
+
         if past_key_values is not None:
             if isinstance(past_key_values, Cache):
                 past_len = past_key_values.get_seq_length()

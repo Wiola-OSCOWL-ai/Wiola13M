@@ -4,12 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "wiola13m"
-version = "0.1.0"
-description = "Wiola — a Gated Spiral Attention small language model (Spiral RoPE + content-adaptive gate + Butterfly MLP)."
+version = "1.0.0"
+description = "Wiola13M: A 12.9M parameter decoder-only language model featuring Gated Spiral Attention, Spiral RoPE, and Butterfly MLP."
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "Apache-2.0" }
-authors = [{ name = "The Wiola Project" }]
+authors = [{ name = "OSCOWL AI" }]
+
 keywords = [
     "language-model",
     "transformer",
@@ -29,7 +30,9 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Typing :: Typed",
 ]
 dependencies = [
     "torch>=2.1",
@@ -48,15 +51,16 @@ dev = [
     "black>=24.0",
 ]
 all = [
-    "wiola[train]",
-    "wiola[hub]",
-    "wiola[dev]",
+    "wiola13m[train]",
+    "wiola13m[hub]",
+    "wiola13m[dev]",
 ]
 
 [project.urls]
-Homepage = "https://github.com/wiola-project/wiola"
-Repository = "https://github.com/wiola-project/wiola"
-Issues = "https://github.com/wiola-project/wiola/issues"
+Homepage = "https://github.com/Wiola-OSCOWL-ai/Wiola13M"
+Repository = "https://github.com/Wiola-OSCOWL-ai/Wiola13M"
+Issues = "https://github.com/Wiola-OSCOWL-ai/Wiola13M/issues"
+Documentation = "https://huggingface.co/oscowlai/Wiola13M"
 
 [tool.setuptools]
 package-dir = { "" = "src" }
@@ -73,8 +77,6 @@ line-length = 100
 target-version = "py39"
 
 [tool.ruff.lint]
-# E/F/W catch real errors (undefined names, unused imports, whitespace).
-# Import-ordering (I) and line-length (E501) are left to local `black`/`ruff format`.
 select = ["E", "F", "W"]
 ignore = ["E501", "E741"]
 

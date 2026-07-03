@@ -16,7 +16,7 @@ import argparse
 
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-import wiola13m  # noqa: F401
+import wiola13m13m  # noqa: F401
 from wiola13m import WiolaConfig, WiolaForCausalLM
 
 
