@@ -49,7 +49,7 @@ See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the full math.
 
 ```bash
 # from source (recommended while pre-1.0)
-git clone https://github.com/wiola-project/wiola.git
+gh repo clone Wiola-OSCOWL-ai/Wiola13M
 cd wiola
 pip install -e .
 
