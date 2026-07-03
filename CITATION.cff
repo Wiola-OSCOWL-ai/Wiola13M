@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+title: "Wiola: A Gated Spiral Attention Small Language Model"
+message: "If you use this software, please cite it as below."
+type: software
+authors:
+  - name: "The Wiola Project"
+version: 0.1.0
+license: Apache-2.0
+repository-code: "https://github.com/wiola-project/wiola"
+keywords:
+  - small language model
+  - transformer
+  - rotary positional encoding
+  - attention gating
+  - pytorch
+abstract: >-
+  Wiola is a decoder-only small language model (10-100M parameters) built around
+  three components: Spiral Rotary Positional Encoding (a sqrt-growing per-pair
+  frequency perturbation of RoPE), Gated Spiral Attention (a causal,
+  content-adaptive per-head attention gate providing implicit soft head pruning),
+  and the Butterfly MLP (a multiplicative feed-forward block with an intra-block
+  bypass that matches a GeLU 4x FFN in parameter count).

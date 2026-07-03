@@ -1,0 +1,10 @@
+Wiola
+Copyright 2025 The Wiola Project
+
+This product includes software developed by The Wiola Project.
+
+Licensed under the Apache License, Version 2.0. You may obtain a copy of the
+License at http://www.apache.org/licenses/LICENSE-2.0.
+
+This software is designed to interoperate with PyTorch and the Hugging Face
+Transformers library, each distributed under their own respective licenses.

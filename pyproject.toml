@@ -1,0 +1,83 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wiola13m"
+version = "0.1.0"
+description = "Wiola — a Gated Spiral Attention small language model (Spiral RoPE + content-adaptive gate + Butterfly MLP)."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "Apache-2.0" }
+authors = [{ name = "The Wiola Project" }]
+keywords = [
+    "language-model",
+    "transformer",
+    "small-language-model",
+    "slm",
+    "rotary-positional-encoding",
+    "attention",
+    "pytorch",
+    "huggingface",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "torch>=2.1",
+    "transformers>=4.40,<4.46",
+    "safetensors>=0.4.0",
+    "numpy>=1.23",
+]
+
+[project.optional-dependencies]
+train = ["datasets>=2.14", "tokenizers>=0.15", "accelerate>=0.28"]
+hub = ["huggingface_hub>=0.23"]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "ruff>=0.4.0",
+    "black>=24.0",
+]
+all = [
+    "wiola[train]",
+    "wiola[hub]",
+    "wiola[dev]",
+]
+
+[project.urls]
+Homepage = "https://github.com/wiola-project/wiola"
+Repository = "https://github.com/wiola-project/wiola"
+Issues = "https://github.com/wiola-project/wiola/issues"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+# E/F/W catch real errors (undefined names, unused imports, whitespace).
+# Import-ordering (I) and line-length (E501) are left to local `black`/`ruff format`.
+select = ["E", "F", "W"]
+ignore = ["E501", "E741"]
+
+[tool.black]
+line-length = 100
+target-version = ["py39"]
