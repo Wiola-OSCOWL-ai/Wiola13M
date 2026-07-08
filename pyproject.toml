@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "wiola13m"
-version = "1.0.0"
+version = "1.0.1"
 description = "Wiola13M: A 12.9M parameter decoder-only language model featuring Gated Spiral Attention, Spiral RoPE, and Butterfly MLP."
 readme = "README.md"
 requires-python = ">=3.9"
