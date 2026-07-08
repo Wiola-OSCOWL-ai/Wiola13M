@@ -1,0 +1,25 @@
+{
+  "architectures": [
+    "WiolaForCausalLM"
+  ],
+  "attention_dropout": 0.0,
+  "bos_token_id": 1,
+  "eos_token_id": 2,
+  "gate_pre_rope": true,
+  "hidden_size": 256,
+  "initializer_range": 0.02,
+  "intermediate_size": 512,
+  "max_position_embeddings": 512,
+  "model_type": "wiola",
+  "num_attention_heads": 8,
+  "num_hidden_layers": 6,
+  "pad_token_id": 3,
+  "rms_norm_eps": 1e-06,
+  "rope_theta": 10000.0,
+  "spiral_alpha": 0.05,
+  "torch_dtype": "float32",
+  "transformers_version": "4.45.2",
+  "use_attention_gate": true,
+  "use_cache": true,
+  "vocab_size": 32000
+}
